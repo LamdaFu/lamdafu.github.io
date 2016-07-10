@@ -1,0 +1,45 @@
+$g1: #F9F9F9;
+$g2: #F4F4F4;
+$g3: #CBCBCB;
+$w: white;
+$b: black;
+
+body {
+  margin: 0px;
+  font-family: Raleway;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0px;
+}
+
+div#index {
+  width: 100vw;
+  height: 100vh;
+  background: $g1;
+  color: $b;
+  div.index-wrap {
+    background: white;
+    min-height: 100vh;
+    width: 768px;
+    overflow: auto;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    div#banner {
+      img.logo {
+        display: block;
+        margin: auto;
+        width: 100px;
+      }
+      h1, h2, h3 {
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

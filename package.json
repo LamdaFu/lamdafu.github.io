@@ -1,0 +1,27 @@
+{
+  "name": "lamdafu.github.io",
+  "version": "1.0.0",
+  "description": "Lamdafu's website",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LamdaFu/lamdafu.github.io.git"
+  },
+  "keywords": [
+    "Lamdafu",
+    "Website"
+  ],
+  "author": "Chris Cates",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LamdaFu/lamdafu.github.io/issues"
+  },
+  "homepage": "https://github.com/LamdaFu/lamdafu.github.io#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}

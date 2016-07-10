@@ -1,0 +1,30 @@
+body {
+  margin: 0px;
+  font-family: Raleway; }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0px; }
+
+div#index {
+  width: 100vw;
+  height: 100vh;
+  background: #F9F9F9;
+  color: black; }
+  div#index div.index-wrap {
+    background: white;
+    min-height: 100vh;
+    width: 768px;
+    overflow: auto;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; }
+    div#index div.index-wrap div#banner img.logo {
+      display: block;
+      margin: auto;
+      width: 100px; }
+    div#index div.index-wrap div#banner h1, div#index div.index-wrap div#banner h2, div#index div.index-wrap div#banner h3 {
+      text-align: center; }
+    div#index div.index-wrap div#banner h2 {
+      margin-bottom: 15px; }
