@@ -62,7 +62,7 @@ div#background {
   display: block;
   position: absolute;
   border: 1px solid black;
-  background: $g3;
+  background: #7CD5F2;
   opacity: 0.5;
 }
 
@@ -76,8 +76,6 @@ div#index {
   div.index-wrap {
     position: relative;
     border-radius: 5px;
-    box-shadow: 1px 2.5px 5px $g3;
-    background: rgba(256,256,256,0.5);
     min-height: 100vh;
     width: 100%;
     max-width: 768px;

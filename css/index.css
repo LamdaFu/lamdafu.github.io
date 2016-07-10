@@ -56,7 +56,7 @@ div#background {
   display: block;
   position: absolute;
   border: 1px solid black;
-  background: #CBCBCB;
+  background: #7CD5F2;
   opacity: 0.5; }
 
 div#index {
@@ -67,8 +67,6 @@ div#index {
   div#index div.index-wrap {
     position: relative;
     border-radius: 5px;
-    box-shadow: 1px 2.5px 5px #CBCBCB;
-    background: rgba(255, 255, 255, 0.5);
     min-height: 100vh;
     width: 100%;
     max-width: 768px;
