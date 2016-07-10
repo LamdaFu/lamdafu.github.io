@@ -81,48 +81,50 @@
 
       $('.cube-container[data-index=1]').remove()
 
-      $('.cube-container').each(function(i, el) {
-        var offset = -50
-        var factor = Math.floor(i / 10)
-        setTimeout(function() {
-          $(el).css({
-            'opacity': 1,
-            'left': (75 * i) + offset - (factor * 10 * 75),
-            'top': (- 200 * i) + offset + (factor * 75)
-          }, 2500)
-
-          $(el).find('.cube').css({
-            'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
-          }, 2500)
-        }, i * 25)
-      })
-
-      var mod = 1;
-
-      setInterval(function() {
-        mod++
-        $('.banner-wrap').css({
-          'opacity': 1
-        })
+      setTimeout(function() {
         $('.cube-container').each(function(i, el) {
           var offset = -50
           var factor = Math.floor(i / 10)
-          $(el).css({
-            'opacity': 1,
-            'left': (75 * i) + offset - (factor * 10 * 75),
-            'top': (- 200 * i) + offset + (factor * 75)
-          }, 2500)
-          if (mod % 2 == 0) {
+          setTimeout(function() {
+            $(el).css({
+              'opacity': 1,
+              'left': (75 * i) + offset - (factor * 10 * 75),
+              'top': (- 200 * i) + offset + (factor * 75)
+            }, 2500)
+
             $(el).find('.cube').css({
               'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
             }, 2500)
-          } else {
-            $(el).find('.cube').css({
-              'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)'
-            }, 2500)
-          }
-
+          }, i * 25)
         })
+
+        var mod = 1;
+
+        setInterval(function() {
+          mod++
+          $('.banner-wrap').css({
+            'opacity': 1
+          })
+          $('.cube-container').each(function(i, el) {
+            var offset = -50
+            var factor = Math.floor(i / 10)
+            $(el).css({
+              'opacity': 1,
+              'left': (75 * i) + offset - (factor * 10 * 75),
+              'top': (- 200 * i) + offset + (factor * 75)
+            }, 2500)
+            if (mod % 2 == 0) {
+              $(el).find('.cube').css({
+                'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
+              }, 2500)
+            } else {
+              $(el).find('.cube').css({
+                'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)'
+              }, 2500)
+            }
+
+          })
+        }, 2500)
       }, 2500)
 
     })
