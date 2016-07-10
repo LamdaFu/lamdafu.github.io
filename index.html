@@ -9,19 +9,19 @@
   </head>
   <body>
     <div id="index">
+      <div id="background">
+        <section class="cube-container" data-index="1">
+          <div class="cube">
+            <figure class="front"></figure>
+            <figure class="back"></figure>
+            <figure class="right"></figure>
+            <figure class="left"></figure>
+            <figure class="top"></figure>
+            <figure class="bottom"></figure>
+          </div>
+        </section>
+      </div>
       <div class="index-wrap">
-        <div id="background">
-          <section class="cube-container" data-index="1">
-            <div class="cube">
-              <figure class="front"></figure>
-              <figure class="back"></figure>
-              <figure class="right"></figure>
-              <figure class="left"></figure>
-              <figure class="top"></figure>
-              <figure class="bottom"></figure>
-            </div>
-          </section>
-        </div>
         <div id="banner">
           <div class="banner-wrap">
             <img src="img/logo.png" class="logo"/>
@@ -61,60 +61,72 @@
         </div>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/async/1.5.2/async.js"></script>
     <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
-      var amt = $(window).height() / 50 * 10
-      for (var i = 1; i < amt; i++) {
-        var cube = $(".cube-container").clone()
-        cube.attr('data-index', i)
-        cube.css({
-          'opacity': 0,
-          'position': 'relative',
-          'left': Math.random() * $('.index-wrap').width(),
-          'top': Math.random() * $('.index-wrap').height(),
-          'transform': 'scale(0.25)'
-        })
-        cube.find('.cube').css({
-          'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)',
-        })
-        $('#background').append(cube[0])
-      }
+      var amt = ($(window).height() + $(window).width()) / 50 * 10
+      var i = 0
+      var c = $(".cube-container").clone()
+      var factor = Math.floor($(window).width() * 5.5 / amt)
+      console.log(amt)
+
+      async.whilst(
+        function() { return (amt / 2) > i },
+        function(callback) {
+          setTimeout(function() {
+            i++
+            var cube = c.clone()
+            cube.attr('data-index', i)
+            cube.css({
+              'opacity': 0,
+              'position': 'relative',
+              'left': Math.floor(Math.random() * $(window).width()),
+              'top': Math.floor(Math.random() * $(window).height()) + (i * -200),
+              'transform': 'scale(0.25)'
+            })
+            cube.find('.cube').css({
+              'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)',
+            })
+            $('#background').append(cube[0])
+
+            setTimeout(function() {
+              var el = $(".cube-container[data-index="+i+"]")
+              var offsetY = 150
+              var offsetX = -250
+
+              var formulaX = (i * 75) - Math.floor(i / factor) * (75 * i) / (i / factor)
+              var formulaY = (i * -200) + offsetY + (Math.floor(i / factor) * 75)
+
+              console.log(
+                formulaY
+              )
+
+              el.css({
+                'opacity': 1,
+                'left':  formulaX,
+                'top': formulaY
+              })
+
+              el.find('.cube').css({
+                'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
+              })
+            }, 25)
+            callback()
+          }, 25)
+        }
+      )
 
       $('.cube-container[data-index=1]').remove()
 
       setTimeout(function() {
-        $('.cube-container').each(function(i, el) {
-          var offset = -50
-          var factor = Math.floor(i / 10)
-          setTimeout(function() {
-            $(el).css({
-              'opacity': 1,
-              'left': (75 * i) + offset - (factor * 10 * 75),
-              'top': (- 200 * i) + offset + (factor * 75)
-            }, 2500)
-
-            $(el).find('.cube').css({
-              'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
-            }, 2500)
-          }, i * 25)
+        $('.banner-wrap').css({
+          'opacity': 1
         })
-
         var mod = 1;
-
         setInterval(function() {
           mod++
-          $('.banner-wrap').css({
-            'opacity': 1
-          })
           $('.cube-container').each(function(i, el) {
-            var offset = -50
-            var factor = Math.floor(i / 10)
-            $(el).css({
-              'opacity': 1,
-              'left': (75 * i) + offset - (factor * 10 * 75),
-              'top': (- 200 * i) + offset + (factor * 75)
-            }, 2500)
             if (mod % 2 == 0) {
               $(el).find('.cube').css({
                 'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
@@ -124,10 +136,9 @@
                 'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)'
               }, 2500)
             }
-
           })
         }, 2500)
-      }, 2500)
+      }, amt * 25)
 
     })
     </script>
