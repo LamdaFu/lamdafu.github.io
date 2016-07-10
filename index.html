@@ -127,15 +127,9 @@
         setInterval(function() {
           mod++
           $('.cube-container').each(function(i, el) {
-            if (mod % 2 == 0) {
-              $(el).find('.cube').css({
-                'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
-              }, 2500)
-            } else {
-              $(el).find('.cube').css({
-                'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)'
-              }, 2500)
-            }
+            $(el).find('.cube').css({
+              'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)'
+            }, 2500)
           })
         }, 2500)
       }, amt * 25)
