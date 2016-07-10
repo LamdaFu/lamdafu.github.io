@@ -23,5 +23,10 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2"
+  },
+  "dependencies": {
+    "async": "^2.0.0-rc.6",
+    "aws-sdk": "^2.4.6",
+    "node-uuid": "^1.4.7"
   }
 }

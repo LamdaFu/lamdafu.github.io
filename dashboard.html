@@ -26,10 +26,14 @@
     apigClient.lamdafuPost(
       {},
       {
-        operation: 'ping'
+        operation: 'list',
+        payload: {
+          TableName: 'Numbers',
+        }
       },
       {}
-    ).then(function(result) {
+    ).then(function(err, result) {
+      if (err) throw err
       console.log(result)
     }).catch(function(result) {
       console.log(result)
