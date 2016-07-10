@@ -6,24 +6,32 @@ $b: black;
 
 body {
   margin: 0px;
-  font-family: Raleway;
+  font-family: Raleway, sans-serif;
+  background: $g1;
 }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+
 div#index {
   width: 100vw;
   height: 100vh;
-  background: $g1;
+
   color: $b;
   div.index-wrap {
+    border-radius: 5px;
+    box-shadow: 1px 2.5px 5px $g3;
     background: white;
     min-height: 100vh;
-    width: 768px;
-    overflow: auto;
-    margin: auto;
+    width: 100%;
+    max-width: 768px;
+    margin: 15px auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,6 +51,52 @@ div#index {
       a {
         color: black;
         text-decoration: none;
+      }
+    }
+  }
+
+  div.panel {
+    padding: 15px;
+    width: 100vw;
+    background: $g1;
+    color: $b;
+    div.panel-wrap {
+      border-radius: 5px;
+      box-shadow: 1px 2.5px 5px $g3;
+      background: white;
+      width: 100%;
+      max-width: 768px;
+      overflow: auto;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+
+      div.contact {
+        width: 100%;
+        padding: 15px;
+        h3 {
+          text-align: center;
+        }
+        a {
+          color: black;
+          text-decoration: none;
+        }
+      }
+
+      div.column {
+        width: calc(33.33% - 30px);
+        margin: 15px;
+        padding: 15px;
+        border-radius: 5px;
+        h4 {
+          text-align: center;
+          border-bottom: 1px solid $g3;
+          padding-bottom: 5px;
+          margin-bottom: 5px;
+        }
+        p {
+          text-align: center;
+        }
       }
     }
   }
