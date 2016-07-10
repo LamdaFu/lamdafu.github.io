@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Lamdafu | Dashboard</title>
+  </head>
+  <body>
+
+    <div id="dashboard">
+
+    </div>
+
+    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
+    <script>
+    var apigClient = apigClientFactory.newClient({
+      apiKey: 'yLQn87uNKS7hg3SE6weQP2XSBLGcpTER5GwuPKqJ',
+      accessKey: 'AKIAIOFSSRNRZVUMGMQQ',
+      secretKey: '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'
+    })
+
+    apigClient.lamdafuPost(
+      {},
+      {
+        operation: 'ping'
+      },
+      {}
+    ).then(function(result) {
+      console.log(result)
+    }).catch(function(result) {
+      console.log(result)
+    })
+    </script>
+  </body>
+</html>
