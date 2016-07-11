@@ -62,11 +62,12 @@ div#index {
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   color: black; }
   div#index div.index-wrap {
     position: relative;
     border-radius: 5px;
-    min-height: 100vh;
+    min-height: calc(100vh - 30px);
     width: 100%;
     max-width: 768px;
     margin: 15px auto;
@@ -78,8 +79,7 @@ div#index {
       transition: all 2500ms cubic-bezier(0.77, 0, 0.175, 1);
       padding: 30px;
       border-radius: 5px;
-      background: rgba(255, 255, 255, 0.8);
-      opacity: 0; }
+      background: rgba(255, 255, 255, 0.8); }
     div#index div.index-wrap div#banner img.logo {
       display: block;
       margin: auto;

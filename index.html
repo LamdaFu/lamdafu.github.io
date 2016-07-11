@@ -9,18 +9,6 @@
   </head>
   <body>
     <div id="index">
-      <div id="background">
-        <section class="cube-container" data-index="1">
-          <div class="cube">
-            <figure class="front"></figure>
-            <figure class="back"></figure>
-            <figure class="right"></figure>
-            <figure class="left"></figure>
-            <figure class="top"></figure>
-            <figure class="bottom"></figure>
-          </div>
-        </section>
-      </div>
       <div class="index-wrap">
         <div id="banner">
           <div class="banner-wrap">
@@ -34,105 +22,11 @@
           </div>
         </div>
       </div>
-      <div class="panel">
-        <div class="panel-wrap">
-          <div class="column">
-            <h4>Big Data</h4>
-            <p>We aggregate, curate and store terabytes worth of data to serve your needs.</p>
-          </div>
-          <div class="column">
-            <h4>Actionable Insights</h4>
-            <p>With meaningful insights, you learn how to take action with millions of rows of data.</p>
-          </div>
-          <div class="column">
-            <h4>Scalable Solutions</h4>
-            <p>With lightning fast query times, you get the best of both worlds. Speed and Performance.</p>
-          </div>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-wrap">
-          <div class="contact">
-            <h3>
-              Get in touch <br/>
-              <a href="mailto:hello@lamdafu.com">hello@lamdafu.com</a>
-            </h3>
-          </div>
-        </div>
-      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/async/1.5.2/async.js"></script>
     <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
-      var amt = ($(window).height() + $(window).width()) / 50 * 10
-      var i = 0
-      var c = $(".cube-container").clone()
-      var factor = Math.floor($(window).width() * 5.5 / amt)
-      console.log(amt)
-
-      async.whilst(
-        function() { return (amt / 2) > i },
-        function(callback) {
-          setTimeout(function() {
-            i++
-            var cube = c.clone()
-            cube.attr('data-index', i)
-            cube.css({
-              'opacity': 0,
-              'position': 'relative',
-              'left': Math.floor(Math.random() * $(window).width()),
-              'top': Math.floor(Math.random() * $(window).height()) + (i * -200),
-              'transform': 'scale(0.25)'
-            })
-            cube.find('.cube').css({
-              'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)',
-            })
-            $('#background').append(cube[0])
-
-            setTimeout(function() {
-              var el = $(".cube-container[data-index="+i+"]")
-              var offsetY = 150
-              var offsetX = -250
-
-              var formulaX = (i * 75) - Math.floor(i / factor) * (75 * i) / (i / factor)
-              var formulaY = (i * -200) + offsetY + (Math.floor(i / factor) * 75)
-
-              console.log(
-                formulaY
-              )
-
-              el.css({
-                'opacity': 1,
-                'left':  formulaX,
-                'top': formulaY
-              })
-
-              el.find('.cube').css({
-                'transform': 'translateZ( 100px ) rotateX(0deg) rotateY(0deg)'
-              })
-            }, 25)
-            callback()
-          }, 25)
-        }
-      )
-
-      $('.cube-container[data-index=1]').remove()
-
-      setTimeout(function() {
-        $('.banner-wrap').css({
-          'opacity': 1
-        })
-        var mod = 1;
-        setInterval(function() {
-          mod++
-          $('.cube-container').each(function(i, el) {
-            $(el).find('.cube').css({
-              'transform': 'translateZ( 100px ) rotateX(' + Math.random() * 360 + 'deg) rotateY(' + Math.random() * 360 + 'deg)'
-            }, 2500)
-          })
-        }, 2500)
-      }, amt * 25)
 
     })
     </script>

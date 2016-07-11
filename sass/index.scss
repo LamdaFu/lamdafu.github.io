@@ -70,12 +70,13 @@ div#index {
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 
   color: $b;
   div.index-wrap {
     position: relative;
     border-radius: 5px;
-    min-height: 100vh;
+    min-height: calc(100vh - 30px);
     width: 100%;
     max-width: 768px;
     margin: 15px auto;
@@ -89,7 +90,6 @@ div#index {
         padding: 30px;
         border-radius: 5px;
         background: rgba(255,255,255,0.8);
-        opacity: 0;
       }
       img.logo {
         display: block;
