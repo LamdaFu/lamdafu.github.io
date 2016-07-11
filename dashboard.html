@@ -2,11 +2,29 @@
 <html>
   <head>
     <title>Lamdafu | Dashboard</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/index.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Lamdafu | Actionable insights on big data, We aggregate, curate and store terabytes worth of data to serve your needs.">
   </head>
   <body>
 
     <div id="dashboard">
+      <div id="header">
+        <img src="img/logo.png"/>
+        <p>Lamdafu</p>
+        <input type="text" placeholder="Search..." class="search"/>
+      </div>
+      <div id="blurb">
+        <p>Here is a small demo showcasing numbers on a page... We are rewriting our website in
+          React/Redux... This was just to get something up and running :).</P>
+      </div>
+      <div id="list-container">
 
+      </div>
+      <div class="load-more">
+        LOAD MORE
+      </div>
     </div>
 
     <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
@@ -20,24 +38,112 @@
     <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
     <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
     <script type="text/javascript" src="apigClient.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/async/1.5.2/async.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+
     <script>
     var apigClient = apigClientFactory.newClient()
+    var ESK = {}
 
-    apigClient.lamdafuPost(
-      {},
-      {
+    justSearch()
+
+    $('.load-more').click(function() {
+      if ($('.search').val() == '') {
+        justSearch()
+      } else {
+        search()
+      }
+    })
+
+    var TO
+
+    $('.search').on('input', function() {
+      clearTimeout(TO)
+      TO = setTimeout(function() {
+        ESK = {}
+        $("#list-container").html('')
+        if ($('.search').val() == '') {
+          justSearch()
+        } else {
+          search()
+        }
+      }, 250)
+    })
+
+    function justSearch() {
+
+      var params = {
         operation: 'list',
         payload: {
           TableName: 'Numbers',
+          Limit: 25,
         }
-      },
-      {}
-    ).then(function(err, result) {
-      if (err) throw err
-      console.log(result)
-    }).catch(function(result) {
-      console.log(result)
-    })
+      }
+
+      if (ESK.id) {
+        params.ExclusiveStartKey = ESK
+      }
+
+      console.log(params)
+
+      apigClient.lamdafuPost(
+        {},
+        params,
+        {}
+      ).then(function(err, result) {
+        if (err) throw err
+        console.log(result)
+      }).catch(function(result) {
+        console.log(result)
+        ESK = result.data.LastEvaluatedKey
+        result.data.Items.map(function(item) {
+          $("#list-container").append(
+            '<div class="li"><p>Url:<a href="'+item.url.S+'" target=_blank> '+item.url.S+'</a></p>' + '<p>Number: '+ item.number.S +'</p>'
+          )
+        })
+      })
+    }
+
+    function search() {
+
+      var params = {
+        operation: 'list',
+        payload: {
+          TableName: 'Numbers',
+          Limit: 25,
+          FilterExpression: 'contains(#url, :url)',
+          ExpressionAttributeNames: {
+              "#url": "url",
+          },
+          ExpressionAttributeValues: {
+            ':url': {
+              'S': $('.search').val().toString()
+            }
+          }
+        }
+      }
+
+      if (ESK.id) {
+        params.ExclusiveStartKey = ESK
+      }
+
+      apigClient.lamdafuPost(
+        {},
+        params,
+        {}
+      ).then(function(err, result) {
+        if (err) throw err
+        console.log(result)
+      }).catch(function(result) {
+        console.log(result)
+        ESK = result.data.LastEvaluatedKey
+        result.data.Items.map(function(item) {
+          $("#list-container").append(
+            '<div class="li"><p>Url:<a href="'+item.url.S+'" target=_blank> '+item.url.S+'</a></p>' + '<p>Number: '+ item.number.S +'</p>'
+          )
+        })
+      })
+    }
     </script>
   </body>
 </html>

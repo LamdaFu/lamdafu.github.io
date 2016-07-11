@@ -126,3 +126,58 @@ div#index {
           margin-bottom: 5px; }
         div#index div.panel div.panel-wrap div.column p {
           text-align: center; }
+
+div#dashboard {
+  max-width: 768px;
+  margin: auto; }
+  div#dashboard div#header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: white;
+    margin: 15px 0px;
+    padding: 15px;
+    box-shadow: 1px 2.5px 5px #CBCBCB;
+    border-radius: 5px; }
+    div#dashboard div#header img {
+      width: 50px;
+      height: 50px; }
+    div#dashboard div#header p {
+      font-size: 24px;
+      margin: 0px 15px; }
+    div#dashboard div#header input {
+      border: 2px solid #CBCBCB;
+      border-radius: 5px;
+      font-size: 18px;
+      padding: 10px;
+      width: 100%;
+      font-family: Raleway, sans-serif;
+      outline: none; }
+  div#dashboard div#blurb {
+    background: white;
+    margin: 15px 0px;
+    padding: 15px;
+    box-shadow: 1px 2.5px 5px #CBCBCB;
+    border-radius: 5px; }
+    div#dashboard div#blurb p {
+      text-align: center; }
+  div#dashboard div.li {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin: 5px 0px;
+    padding: 15px;
+    box-shadow: 1px 2.5px 5px #CBCBCB;
+    border-radius: 5px; }
+    div#dashboard div.li p {
+      margin-bottom: 15px; }
+  div#dashboard div.load-more {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin: 5px 0px;
+    padding: 15px;
+    box-shadow: 1px 2.5px 5px #CBCBCB;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center; }
