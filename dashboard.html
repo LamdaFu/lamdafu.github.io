@@ -81,7 +81,7 @@
       }
 
       if (ESK.id) {
-        params.ExclusiveStartKey = ESK
+        params.payload.ExclusiveStartKey = ESK
       }
 
       console.log(params)
@@ -124,7 +124,7 @@
       }
 
       if (ESK.id) {
-        params.ExclusiveStartKey = ESK
+        params.payload.ExclusiveStartKey = ESK
       }
 
       apigClient.lamdafuPost(
